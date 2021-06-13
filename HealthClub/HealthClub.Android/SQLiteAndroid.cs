@@ -21,6 +21,13 @@ namespace HealthClub.Droid
     public class SQLiteAndroid : SQLiteInterface
     {
         SQLiteConnection con;
+
+        public void DeleteCustomer(int id)
+        {
+            string sql = $"Delete From Customer where ID={id}";
+            con.Execute(sql);
+        }
+
         public SQLiteConnection GetConnectionForDatabase()
         {
             var dbName = "HealthClubDB.db3";
@@ -29,6 +36,48 @@ namespace HealthClub.Droid
             con = new SQLiteConnection(path);
             con.CreateTable<Customer>();
             return con;
+        }
+
+        public List<Customer> GetCustomers()
+        {
+            string sql = "Select * from Customer";
+            List<Customer> customer = con.Query<Customer>(sql);
+            return customer;
+        }
+
+        public bool SaveCustomer(Customer customer)
+        {
+            bool flag = false;
+            try
+            {
+                con.Insert(customer);
+                flag = true;
+
+            }
+            catch (Exception)
+            {
+                flag = false;
+            }
+            return flag;
+        }
+
+        public bool UpdateCustomer(Customer customer)
+        {
+            bool res = false;
+            try
+            {
+                string sql = $"UPDATE Customer set Name='{customer.Name}',Address='{customer.Address}',PhoneNumber='{customer.PhoneNumber}', Email='{customer.Email}',Fee='{customer.Fee}' where ID='{customer.ID}'";
+
+                con.Execute(sql);
+                res = true;
+            }
+            catch (Exception ex)
+            {
+
+                res = false;
+
+            }
+            return res;
         }
     }
 }

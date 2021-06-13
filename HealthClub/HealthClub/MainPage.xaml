@@ -8,12 +8,12 @@
             <Button x:Name="AddCustomer" Text="Add Gym Customer" Clicked="AddCustomer_Clicked"
                     HorizontalOptions="FillAndExpand" BackgroundColor="Black" TextColor="White" Margin="0,10,0,0"/>
 
-            <!--<ListView x:Name="EmployeeList" HasUnevenRows="True" ItemTapped="EditEmployee">
+            <ListView x:Name="CustomerList" HasUnevenRows="True" ItemTapped="EditCustomer">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.ContextActions>
-                                <MenuItem Text="Delete" Clicked="DeleteEmploye" IsDestructive="True" CommandParameter="{Binding .}"/>
+                                <MenuItem Text="Delete" Clicked="DeleteCustomer" IsDestructive="True" CommandParameter="{Binding .}"/>
                             </ViewCell.ContextActions>
                             <StackLayout>
                                 <Label Text="{Binding Name,StringFormat='Name : {0:F0}'}" FontSize="Small" FontAttributes="Bold"/>
@@ -24,7 +24,7 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>-->
+            </ListView>
 
         </StackLayout>
 
